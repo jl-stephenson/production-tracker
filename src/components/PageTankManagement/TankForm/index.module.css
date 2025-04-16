@@ -58,7 +58,7 @@
   padding: 1rem 1.5rem;
   width: 100%;
   justify-self: center;
-  background-color: #298a83;
+  background-color: var(--accent-2);
   color: white;
   font-size: 1.1rem;
   border: 0;
@@ -67,5 +67,10 @@
 }
 
 .submitButton:hover {
-  background-color: #1f6d67;
+  background-color: var(--accent-3);
+}
+
+.submitButton:focus {
+  outline: 2px solid var(--primary-dark);
+  outline-offset: 2px;
 }
