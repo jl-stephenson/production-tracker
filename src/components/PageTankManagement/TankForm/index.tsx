@@ -29,28 +29,32 @@ export function TankForm() {
       </div>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formFields}>
-        <div className={styles.textInput}>
-          <label htmlFor="tank-size">Tank Size (litres):</label>
-          <input {...register("size")} id="tank-size" type="text" />
-          {errors.size && <p>{errors.size.message}</p>}
-        </div>
-        <div className={styles.selectFlex}>
-          <label htmlFor="tank-material">Material:</label>
-          <select
-            {...register("material")}
-            id="tank-material"
-            className={styles.select}
-          >
-            <option>Stainless Steel</option>
-            <option>Oak</option>
-            <option>Plastic</option>
-          </select>
-        </div>
+          <div className={styles.textInput}>
+            <label htmlFor="tank-size">Tank Size (litres):</label>
+            <input {...register("size")} id="tank-size" type="text" />
+            {errors.size && <p>{errors.size.message}</p>}
+          </div>
+          <div className={styles.selectFlex}>
+            <label htmlFor="tank-material">Material:</label>
+            <select
+              {...register("material")}
+              id="tank-material"
+              className={styles.select}
+            >
+              <option>Stainless Steel</option>
+              <option>Oak</option>
+              <option>Plastic</option>
+            </select>
+          </div>
         </div>
         <div className={styles.formFooter}>
-        <button disabled={isSubmitting} type="submit" className={styles.submitButton}>
-          {isSubmitting ? "Loading..." : "Submit"}
-        </button>
+          <button
+            disabled={isSubmitting}
+            type="submit"
+            className={styles.submitButton}
+          >
+            {isSubmitting ? "Loading..." : "Submit"}
+          </button>
         </div>
       </form>
     </div>
