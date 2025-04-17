@@ -3,18 +3,44 @@
   margin: 2rem auto;
   display: grid;
   gap: 0.25rem;
-
 }
 
 .tankCard {
+  position: relative;
   display: flex;
   align-items: center;
   border: 1px solid var(--primary-dark);
+  background-color: var(--neutral-light);
+}
+
+.tankCard::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0.75rem;
+}
+
+.tankCard[data-status="empty"]::before {
+  background-color: blue;
+}
+
+.tankCard[data-status="fermenting"]::before {
+  background-color: green;
+}
+
+.tankCard[data-status="aging"]::before {
+  background-color: #f59e0b;
+}
+
+.tankCard[data-status="ready"]::before {
+  background-color: var(--failure);
 }
 
 .cardInfo {
   flex-grow: 1;
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 .cardButton {

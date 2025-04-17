@@ -2,11 +2,19 @@ import { useState } from "react";
 import { FormFields, TankForm } from "./TankForm";
 import { TankList } from "./TankList";
 
+enum Status {
+  Empty = "empty",
+  Fermenting = "fermenting",
+  Aging = "aging",
+  Ready = "ready",
+}
+
 export type Tank = {
   id: number;
   size: number;
   material: "Stainless Steel" | "Oak" | "Plastic";
   dateCreated: number;
+  status: Status;
 };
 
 export function PageTankManagement() {
@@ -21,6 +29,7 @@ export function PageTankManagement() {
         size: data.size,
         material: data.material,
         dateCreated: now,
+        status: Status.Empty,
       };
 
       return [...prevTanks, newTank];

@@ -10,7 +10,11 @@ export function TankList({ tanks, handleDeleteTank }: TankListProps) {
   return (
     <ul role="list" className={styles.container}>
       {tanks.map((tank) => (
-        <li className={styles.tankCard}>
+        <li
+          key={tank.id}
+          className={styles.tankCard}
+          data-status={tank.status.toLowerCase()}
+        >
           <div className={styles.cardInfo}>
             <p>Size: {tank.size}</p>
             <p>Material: {tank.material}</p>
