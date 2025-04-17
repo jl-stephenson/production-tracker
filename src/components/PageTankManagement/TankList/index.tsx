@@ -3,7 +3,7 @@ import styles from "./index.module.css";
 
 type TankListProps = {
   tanks: Tank[];
-  handleDeleteTank: (id: number) => void;
+  handleDeleteTank: (id: string) => void;
 };
 
 export function TankList({ tanks, handleDeleteTank }: TankListProps) {

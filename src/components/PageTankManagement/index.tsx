@@ -40,7 +40,7 @@ export function PageTankManagement() {
     });
   }
 
-  function handleDeleteTank(id: number) {
+  function handleDeleteTank(id: string) {
     setTanks((prevTanks) => prevTanks.filter((tank) => tank.id !== id));
   }
 
