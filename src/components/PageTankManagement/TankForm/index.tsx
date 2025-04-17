@@ -17,14 +17,15 @@ type TankFormProps = {
 export function TankForm({ handleAddTank }: TankFormProps) {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<FormFields>({ resolver: zodResolver(schema) });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(data);
     handleAddTank(data);
+    reset();
   };
 
   return (
@@ -36,7 +37,7 @@ export function TankForm({ handleAddTank }: TankFormProps) {
         <div className={styles.formFields}>
           <div className={styles.textInput}>
             <label htmlFor="tank-capacity">Tank Capacity (litres):</label>
-            <input {...register("capacity")} id="tank-capacity" type="text" />
+            <input {...register("capacity")} id="tank-capacity" type="number" />
             {errors.capacity && <p>{errors.capacity.message}</p>}
           </div>
           <div className={styles.selectFlex}>

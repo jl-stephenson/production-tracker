@@ -10,7 +10,7 @@ enum Status {
 }
 
 export type Tank = {
-  id: number;
+  id: string;
   capacity: number;
   material: "Stainless Steel" | "Oak" | "Plastic";
   dateCreated: number;
@@ -20,12 +20,16 @@ export type Tank = {
 export function PageTankManagement() {
   const [tanks, setTanks] = useState<Tank[]>([]);
 
+  function generateUniqueId() {
+      return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+   }
+
   function handleAddTank(data: FormFields) {
     setTanks((prevTanks) => {
       const now = Date.now();
 
       const newTank = {
-        id: now,
+        id: generateUniqueId(),
         capacity: data.capacity,
         material: data.material,
         dateCreated: now,
