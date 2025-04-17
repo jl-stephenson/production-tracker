@@ -3,11 +3,11 @@ import { FormFields, TankForm } from "./TankForm";
 import { TankList } from "./TankList";
 
 export type Tank = {
-    id: number;
-    size: number;
-    material: "Stainless Steel" | "Oak" | "Plastic";
-    dateCreated: number;
-}
+  id: number;
+  size: number;
+  material: "Stainless Steel" | "Oak" | "Plastic";
+  dateCreated: number;
+};
 
 export function PageTankManagement() {
   const [tanks, setTanks] = useState<Tank[]>([]);
@@ -27,10 +27,14 @@ export function PageTankManagement() {
     });
   }
 
+  function handleDeleteTank(id: number) {
+    setTanks((prevTanks) => prevTanks.filter((tank) => tank.id !== id));
+  }
+
   return (
     <main>
       <TankForm handleAddTank={handleAddTank} />
-      <TankList tanks={tanks} />
+      <TankList tanks={tanks} handleDeleteTank={handleDeleteTank} />
     </main>
   );
 }

@@ -50,6 +50,7 @@ dd {
 ul[role="list"],
 ol[role="list"] {
   list-style: none;
+  padding: 0;
 }
 
 /* Set core body defaults */
@@ -146,6 +147,10 @@ h6 {
   font-family: "Instrument Sans", sans-serif;
   font-weight: 500;
   margin: 0;
+}
+
+p {
+  padding: 0;
 }
 
 :root {
