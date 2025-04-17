@@ -2,17 +2,16 @@
   max-width: 38rem;
   margin: 2rem auto;
   padding: 0;
-  background: var(--neutral-light);
-  border: 1px solid var(--primary-dark);
+  background: var(--color-light-glare);
+  border: 1px solid var(--color-dark);
   display: grid;
   grid-template-rows: auto 1fr;
-  transition: box-shadow 0.3s ease;
 }
 
 .formHeader {
   width: 100%;
-  border-bottom: 1px solid var(--primary-dark);
-  background-color: var(--primary-light);
+  border-bottom: 1px solid var(--color-dark);
+  background-color: var(--color-light);
   padding: 1rem;
   margin: 0;
 }
@@ -58,19 +57,19 @@
   padding: 1rem 1.5rem;
   width: 100%;
   justify-self: center;
-  background-color: var(--accent-2);
+  background-color: var(--color-primary);
   color: white;
   font-size: 1.1rem;
   border: 0;
-  border-top: 1px solid var(--primary-dark);
+  border-top: 1px solid var(--color-dark);
   cursor: pointer;
 }
 
 .submitButton:hover {
-  background-color: var(--accent-3);
+  background-color: var(--color-primary-shade);
 }
 
 .submitButton:focus {
-  outline: 2px solid var(--primary-dark);
+  outline: 2px solid var(--color-dark);
   outline-offset: 2px;
 }
