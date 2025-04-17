@@ -29,7 +29,7 @@ export function PageTankManagement() {
         capacity: data.capacity,
         material: data.material,
         dateCreated: now,
-        status: Status.Empty,
+        status: Status.Ready,
       };
 
       return [...prevTanks, newTank];

@@ -9,8 +9,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  border: 1px solid var(--primary-dark);
-  background-color: var(--neutral-light);
+  border: 1px solid var(--color-dark);
+  background-color: var(--color-light-glare);
 }
 
 .tankCard::before {
@@ -23,19 +23,19 @@
 }
 
 .tankCard[data-status="empty"]::before {
-  background-color: blue;
+  background-color: var(--color-empty);
 }
 
 .tankCard[data-status="fermenting"]::before {
-  background-color: green;
+  background-color: var(--color-fermenting);
 }
 
 .tankCard[data-status="aging"]::before {
-  background-color: #f59e0b;
+  background-color: var(--color-aging);
 }
 
 .tankCard[data-status="ready"]::before {
-  background-color: var(--failure);
+  background-color: var(--color-ready);
 }
 
 .cardInfo {
@@ -44,11 +44,11 @@
 }
 
 .cardButton {
-  background-color: var(--failure);
+  background-color: var(--color-secondary);
   color: white;
   cursor: pointer;
   height: 100%;
   border: 0;
-  border-left: 1px solid var(--primary-dark);
+  border-left: 1px solid var(--color-dark);
   padding: 1.5rem;
 }

@@ -117,8 +117,8 @@ textarea:not([rows]) {
 html {
   font-family: "Karla", sans-serif;
   font-size: 1rem;
-  color: var(--primary-dark);
-  background-color: var(--primary-light);
+  color: var(--color-dark);
+  background-color: var(--color-light);
 }
 
 input {
@@ -134,7 +134,7 @@ button,
 select {
   font-family: inherit;
   font-size: inherit;
-  border: 1px solid var(--primary-dark);
+  border: 1px solid var(--color-dark);
   padding: 0.25rem;
 }
 
@@ -156,12 +156,20 @@ p {
 
 :root {
   /* colors */
-  --primary-dark: #161925;
-  --primary-light: #edece4;
-  --neutral-light: #f4f3ef;
-  --failure: #f67672;
-  --success: #136f63;
-  --accent-1: #22aaa1;
-  --accent-2: #298a83;
-  --accent-3: #1f6d67;
+  --color-dark: #161925;
+  --color-dark-glare: #22273a;
+  --color-dark-shade: #0e1017;
+  --color-light: #edece4;
+  --color-light-glare: #f4f3ef;
+  --color-light-shade: #b4b3ad;
+  --color-primary-glare: #22aaa1;
+  --color-primary: #298a83;
+  --color-primary-shade: #1f6d67;
+  --color-secondary: #d86764;
+  --color-secondary-glare: #f67672;
+  --color-secondary-shade: #bc5b58;
+  --color-fermenting: #0c7c59;
+  --color-empty: #087ca7;
+  --color-ready: #d64933;
+  --color-aging: #f17f29;
 }
