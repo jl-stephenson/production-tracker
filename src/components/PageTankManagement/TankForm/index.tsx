@@ -8,9 +8,13 @@ const schema = z.object({
   material: z.enum(["Stainless Steel", "Oak", "Plastic"]),
 });
 
-type FormFields = z.infer<typeof schema>;
+export type FormFields = z.infer<typeof schema>;
 
-export function TankForm() {
+type TankFormProps = {
+  handleAddTank: (data: FormFields) => void;
+};
+
+export function TankForm({ handleAddTank }: TankFormProps) {
   const {
     register,
     handleSubmit,
@@ -20,6 +24,7 @@ export function TankForm() {
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log(data);
+    handleAddTank(data);
   };
 
   return (
