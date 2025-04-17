@@ -16,7 +16,7 @@ export function TankList({ tanks, handleDeleteTank }: TankListProps) {
           data-status={tank.status.toLowerCase()}
         >
           <div className={styles.cardInfo}>
-            <p>Size: {tank.size}</p>
+            <p>Capacity: {tank.capacity}</p>
             <p>Material: {tank.material}</p>
           </div>
           <button

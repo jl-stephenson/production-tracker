@@ -11,7 +11,7 @@ enum Status {
 
 export type Tank = {
   id: number;
-  size: number;
+  capacity: number;
   material: "Stainless Steel" | "Oak" | "Plastic";
   dateCreated: number;
   status: Status;
@@ -26,7 +26,7 @@ export function PageTankManagement() {
 
       const newTank = {
         id: now,
-        size: data.size,
+        capacity: data.capacity,
         material: data.material,
         dateCreated: now,
         status: Status.Empty,

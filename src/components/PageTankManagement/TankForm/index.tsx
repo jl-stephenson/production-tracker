@@ -4,7 +4,7 @@ import { z } from "zod";
 import styles from "./index.module.css";
 
 const schema = z.object({
-  size: z.coerce.number().positive(),
+  capacity: z.coerce.number().positive(),
   material: z.enum(["Stainless Steel", "Oak", "Plastic"]),
 });
 
@@ -35,9 +35,9 @@ export function TankForm({ handleAddTank }: TankFormProps) {
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formFields}>
           <div className={styles.textInput}>
-            <label htmlFor="tank-size">Tank Size (litres):</label>
-            <input {...register("size")} id="tank-size" type="text" />
-            {errors.size && <p>{errors.size.message}</p>}
+            <label htmlFor="tank-capacity">Tank Capacity (litres):</label>
+            <input {...register("capacity")} id="tank-capacity" type="text" />
+            {errors.capacity && <p>{errors.capacity.message}</p>}
           </div>
           <div className={styles.selectFlex}>
             <label htmlFor="tank-material">Material:</label>
