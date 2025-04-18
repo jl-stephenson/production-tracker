@@ -148,6 +148,11 @@ select {
   padding: 0.25rem;
 }
 
+select {
+  background-color: white;
+  padding-inline: 0.5rem;
+}
+
 h1,
 h2,
 h3,

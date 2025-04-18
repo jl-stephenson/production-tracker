@@ -11,7 +11,8 @@ const fruitSchema = z.object({
 export const newFermentationSchema = z.object({
   fruits: z.array(fruitSchema).min(1, "At least one fruit is required"),
   startDate: z.date(),
-  estimatedEndDate: z.date().optional(),
+  estimatedEndDate:
+    z.date().optional(),
 });
 
 export type NewFermentationFormValues = z.infer<typeof newFermentationSchema>;

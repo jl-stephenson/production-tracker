@@ -43,8 +43,6 @@
 
 .select {
   flex-grow: 1;
-  background-color: white;
-  padding-inline: 0.5rem;
 }
 
 .formFooter {
