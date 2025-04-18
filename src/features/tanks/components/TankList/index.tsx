@@ -1,4 +1,4 @@
-import { Tank } from "@/features/tanks/pages/TankListPage";
+import { Tank } from "@/features/tanks/utils/Types";
 import styles from "./index.module.css";
 
 type TankListProps = {
