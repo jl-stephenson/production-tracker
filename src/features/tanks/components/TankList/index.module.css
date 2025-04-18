@@ -47,7 +47,7 @@
   padding: 1.5rem;
 }
 
-.cardButton {
+.deleteButton {
   background-color: var(--color-secondary);
   color: white;
   cursor: pointer;
@@ -58,11 +58,11 @@
   transition: background-color 0.2s ease;
 }
 
-.cardButton:hover {
+.deleteButton:hover {
     background-color: var(--color-secondary-shade);
 }
 
-.cardButton:focus {
+.deleteButton:focus {
     outline: 2px solid var(--color-dark);
     outline-offset: -2px;
 }

@@ -1,10 +1,9 @@
-import { PageTankManagement } from "./components/PageTankManagement";
-
+import { NewFermentationForm } from "./features/fermentations/pages/NewFermentationPage";
 
 export default function App() {
   return (
     <>
-      <PageTankManagement />
+      <NewFermentationForm />
     </>
   );
 }

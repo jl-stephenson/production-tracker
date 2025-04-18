@@ -1,28 +1,14 @@
 import { useState } from "react";
-import { FormFields, TankForm } from "./TankForm";
-import { TankList } from "./TankList";
-
-enum Status {
-  Empty = "empty",
-  Fermenting = "fermenting",
-  Aging = "aging",
-  Ready = "ready",
-}
-
-export type Tank = {
-  id: string;
-  capacity: number;
-  material: "Stainless Steel" | "Oak" | "Plastic";
-  dateCreated: number;
-  status: Status;
-};
+import { FormFields, TankForm } from "@/features/tanks/components/TankForm";
+import { TankList } from "@/features/tanks/components/TankList";
+import { Status, Tank } from "@/features/tanks/utils/Types";
 
 export function PageTankManagement() {
   const [tanks, setTanks] = useState<Tank[]>([]);
 
   function generateUniqueId() {
-      return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-   }
+    return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+  }
 
   function handleAddTank(data: FormFields) {
     setTanks((prevTanks) => {
