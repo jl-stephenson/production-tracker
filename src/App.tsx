@@ -1,5 +1,4 @@
-import { PageTankManagement } from "./features/tanks/components/PageTankManagement";
-
+import { PageTankManagement } from "./features/tanks/pages/TankListPage";
 
 export default function App() {
   return (

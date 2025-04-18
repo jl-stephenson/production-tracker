@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FormFields, TankForm } from "./TankForm";
-import { TankList } from "./TankList";
+import { FormFields, TankForm } from "@/features/tanks/components/TankForm"
+import { TankList } from "@/features/tanks/components/TankList";
 
 enum Status {
   Empty = "empty",

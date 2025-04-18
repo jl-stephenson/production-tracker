@@ -1,4 +1,4 @@
-import { Tank } from "../index";
+import { Tank } from "@/features/tanks/pages/TankListPage";
 import styles from "./index.module.css";
 
 type TankListProps = {
@@ -27,7 +27,7 @@ export function TankList({ tanks, handleDeleteTank }: TankListProps) {
             <p>Material: {tank.material}</p>
           </div>
           <button
-            className={styles.cardButton}
+            className={styles.deleteButton}
             onClick={() => handleDeleteTank(tank.id)}
           >
             Delete
