@@ -4,7 +4,7 @@ import { z } from "zod";
 import styles from "./index.module.css";
 
 const schema = z.object({
-  capacity: z.coerce.number().positive(),
+  capacity: z.number().positive(),
   material: z.enum(["Stainless Steel", "Oak", "Plastic"]),
 });
 

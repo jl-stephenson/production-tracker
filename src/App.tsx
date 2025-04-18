@@ -1,4 +1,4 @@
-import { PageTankManagement } from "./components/PageTankManagement";
+import { PageTankManagement } from "./features/tanks/components/PageTankManagement";
 
 
 export default function App() {
