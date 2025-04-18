@@ -11,7 +11,7 @@ export function NewFermentationForm() {
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<NewFermentationFormValues>({
     resolver: zodResolver(newFermentationSchema),
     defaultValues: {
@@ -27,17 +27,10 @@ export function NewFermentationForm() {
     name: "fruits",
   });
 
-  const onSubmit: SubmitHandler<NewFermentationFormValues> = async (
-    data,
-    errors
-  ) => {
+  const onSubmit: SubmitHandler<NewFermentationFormValues> = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log(data);
-    console.log("Errors:", errors);
   };
-
-  //   const formState = useFormState({ control });
-  //   console.log("Current form state:", formState);
 
   return (
     <div className={styles.container}>
@@ -63,7 +56,9 @@ export function NewFermentationForm() {
                     {...register(`fruits.${index}.variety` as const)}
                   />
                   {errors.fruits?.[index]?.variety && (
-                    <span>{errors.fruits?.[index]?.variety?.message}</span>
+                    <span role="alert">
+                      {errors.fruits?.[index]?.variety?.message}
+                    </span>
                   )}
                 </label>
               </div>
@@ -77,7 +72,9 @@ export function NewFermentationForm() {
                     })}
                   />
                   {errors.fruits?.[index]?.sugarLevel && (
-                    <span>{errors.fruits?.[index]?.sugarLevel?.message}</span>
+                    <span role="alert">
+                      {errors.fruits?.[index]?.sugarLevel?.message}
+                    </span>
                   )}
                 </label>
                 <label>
@@ -89,7 +86,9 @@ export function NewFermentationForm() {
                     })}
                   />
                   {errors.fruits?.[index]?.pH && (
-                    <span>{errors.fruits?.[index]?.pH?.message}</span>
+                    <span role="alert">
+                      {errors.fruits?.[index]?.pH?.message}
+                    </span>
                   )}
                 </label>
               </div>
@@ -102,7 +101,9 @@ export function NewFermentationForm() {
                   })}
                 />
                 {errors.fruits?.[index]?.weight && (
-                  <span>{errors.fruits?.[index]?.weight?.message}</span>
+                  <span role="alert">
+                    {errors.fruits?.[index]?.weight?.message}
+                  </span>
                 )}
               </label>
             </div>
@@ -126,6 +127,7 @@ export function NewFermentationForm() {
                 className={styles.deleteButton}
                 type="button"
                 onClick={() => remove(index)}
+                disabled={fields.length === 1}
               >
                 Delete
               </button>
@@ -141,7 +143,9 @@ export function NewFermentationForm() {
                 valueAsDate: true,
               })}
             />
-            {errors.startDate && <span>{errors.startDate.message}</span>}
+            {errors.startDate && (
+              <span role="alert">{errors.startDate.message}</span>
+            )}
           </label>
           <label>
             Estimated end date (optional):
@@ -153,8 +157,12 @@ export function NewFermentationForm() {
             />
           </label>
         </div>
-        <button className={styles.submitButton} type="submit">
-          Submit
+        <button
+          className={styles.submitButton}
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Submitting..." : "Submit"}
         </button>
       </form>
     </div>

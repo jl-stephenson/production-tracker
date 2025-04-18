@@ -28,6 +28,7 @@ export function TankList({ tanks, handleDeleteTank }: TankListProps) {
           </div>
           <button
             className={styles.deleteButton}
+            type="button"
             onClick={() => handleDeleteTank(tank.id)}
           >
             Delete
