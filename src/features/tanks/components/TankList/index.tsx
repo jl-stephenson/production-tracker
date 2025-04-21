@@ -1,5 +1,6 @@
 import { Tank } from "@/features/tanks/utils/Types";
 import styles from "./index.module.css";
+import { Link } from "@tanstack/react-router";
 
 type TankListProps = {
   tanks: Tank[];
@@ -26,6 +27,13 @@ export function TankList({ tanks, handleDeleteTank }: TankListProps) {
             <p>Capacity: {tank.capacity} litres</p>
             <p>Material: {tank.material}</p>
           </div>
+          <Link
+            className={styles.editLink}
+            to="/tanks/$tankId"
+            params={{ tankId: tank.id }}
+          >
+            Edit
+          </Link>
           <button
             className={styles.deleteButton}
             type="button"

@@ -6,7 +6,7 @@ import {
 } from "@/features/fermentations/utils/schema";
 import styles from "./index.module.css";
 
-export function NewFermentationForm() {
+export function NewFermentationPage() {
   const {
     register,
     control,
