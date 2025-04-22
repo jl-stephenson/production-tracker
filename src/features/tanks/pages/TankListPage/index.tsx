@@ -3,7 +3,7 @@ import { FormFields, TankForm } from "@/features/tanks/components/TankForm";
 import { TankList } from "@/features/tanks/components/TankList";
 import { Status, Tank } from "@/features/tanks/utils/Types";
 
-export function PageTankManagement() {
+export function TankListPage() {
   const [tanks, setTanks] = useState<Tank[]>([]);
 
   function generateUniqueId() {

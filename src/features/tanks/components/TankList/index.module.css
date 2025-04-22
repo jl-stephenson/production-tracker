@@ -12,6 +12,7 @@
 .tankCard {
   position: relative;
   display: flex;
+  gap: 0.5rem;
   align-items: center;
   border: 1px solid var(--color-dark);
   background-color: var(--color-light-glare);
@@ -47,6 +48,23 @@
   padding: 1.5rem;
 }
 
+.editLink {
+  text-decoration: none;
+  color: white;
+  background-color: var(--color-primary);
+  height: 100%;
+  border-left: 1px solid var(--color-dark);
+  border-right: 1px solid var(--color-dark);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.editLink:hover {
+  background-color: var(--color-primary-shade);
+}
+
 .deleteButton {
   background-color: var(--color-secondary);
   color: white;
@@ -62,6 +80,7 @@
     background-color: var(--color-secondary-shade);
 }
 
+.editLink:focus,
 .deleteButton:focus {
     outline: 2px solid var(--color-dark);
     outline-offset: -2px;

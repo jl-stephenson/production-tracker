@@ -6,7 +6,11 @@ import {
 } from "@/features/fermentations/utils/schema";
 import styles from "./index.module.css";
 
-export function NewFermentationForm() {
+type NewFermentationPageProps = {
+  tankId: string;
+}
+
+export function NewFermentationPage({tankId}: NewFermentationPageProps) {
   const {
     register,
     control,
@@ -35,7 +39,7 @@ export function NewFermentationForm() {
   return (
     <div className={styles.container}>
       <div className={styles.formHeader}>
-        <h2>Register new fermentation</h2>
+        <h2>Register new fermentation - {tankId}</h2>
       </div>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         {fields.map((item, index) => (
