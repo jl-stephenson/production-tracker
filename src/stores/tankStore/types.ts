@@ -7,10 +7,11 @@ export enum Status {
 
 export type Tank = {
   id: string;
+  fermentationId?: string;
   capacity: number;
   material: "Stainless Steel" | "Oak" | "Plastic";
-  dateCreated?: number;
-  status?: Status;
+  dateCreated: number;
+  status: Status;
 };
 
 export type Fruit = {
@@ -23,6 +24,7 @@ export type Fruit = {
 
 export type Fermentation = {
   id: string;
+  tankId: string;
   startDate: Date;
   estimatedEndDate?: Date;
   fruits: Fruit[];
@@ -31,6 +33,6 @@ export type Fermentation = {
 export type TankStore = {
     tanks: Tank[];
     fermentations: Fermentation[];
-    addTank: (tank: Omit<Tank, "id">) => void;
-    addFermentation: (fermentation: Omit<Fermentation, "id">) => void;
+    addTank: (tank: Omit<Tank, "id" | "dateCreated" | "status">) => void;
+    addFermentation: (fermentation: Omit<Fermentation, "id" | "tankId">, tankId: string) => void;
 }

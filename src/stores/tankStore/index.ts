@@ -12,13 +12,14 @@ export const useTankStore = create<TankStore>((set) => ({
         { ...tank, id: generateUniqueId(), dateCreated: Date.now(), status: Status.Empty },
       ],
     })),
-  addFermentation: (fermentation) =>
+  addFermentation: (fermentation, tankId) =>
     set((state) => ({
       fermentations: [
         ...state.fermentations,
         {
           ...fermentation,
           id: generateUniqueId(),
+          tankId: tankId,
         },
       ],
     })),

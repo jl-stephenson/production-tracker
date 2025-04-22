@@ -19,7 +19,7 @@ const {tanks} = useTankStore();
         <li
           key={tank.id}
           className={styles.tankCard}
-          data-status={tank.status?.toLowerCase()}
+          data-status={tank.status.toLowerCase()}
         >
           <div className={styles.cardInfo}>
             <p>Capacity: {tank.capacity} litres</p>

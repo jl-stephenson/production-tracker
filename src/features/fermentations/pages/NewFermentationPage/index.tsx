@@ -36,14 +36,14 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
 
   const onSubmit: SubmitHandler<NewFermentationFormValues> = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    addFermentation(data);
+    addFermentation(data, tankId);
     // console.log(data);
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.formHeader}>
-        <h2>Register new fermentation - {tankId}</h2>
+        <h2>Register new fermentation</h2>
       </div>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         {fields.map((item, index) => (
