@@ -58,7 +58,7 @@
   padding: 1.5rem;
   display: flex;
   align-items: center;
-  transition: backgound-color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .editLink:hover {

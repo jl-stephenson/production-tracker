@@ -31,6 +31,7 @@ export function TankList({ tanks, handleDeleteTank }: TankListProps) {
             className={styles.editLink}
             to="/tanks/$tankId"
             params={{ tankId: tank.id }}
+            aria-label={`Edit tank with capacity of ${tank.capacity} litres`}
           >
             Edit
           </Link>
