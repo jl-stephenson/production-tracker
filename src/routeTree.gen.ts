@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as TanksIndexImport } from './routes/tanks/index'
 import { Route as TanksTankIdImport } from './routes/tanks/$tankId'
 
 // Create/Update Routes
@@ -19,6 +20,12 @@ import { Route as TanksTankIdImport } from './routes/tanks/$tankId'
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TanksIndexRoute = TanksIndexImport.update({
+  id: '/tanks/',
+  path: '/tanks/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,6 +53,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TanksTankIdImport
       parentRoute: typeof rootRoute
     }
+    '/tanks/': {
+      id: '/tanks/'
+      path: '/tanks'
+      fullPath: '/tanks'
+      preLoaderRoute: typeof TanksIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +68,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/tanks/$tankId': typeof TanksTankIdRoute
+  '/tanks': typeof TanksIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/tanks/$tankId': typeof TanksTankIdRoute
+  '/tanks': typeof TanksIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/tanks/$tankId': typeof TanksTankIdRoute
+  '/tanks/': typeof TanksIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tanks/$tankId'
+  fullPaths: '/' | '/tanks/$tankId' | '/tanks'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tanks/$tankId'
-  id: '__root__' | '/' | '/tanks/$tankId'
+  to: '/' | '/tanks/$tankId' | '/tanks'
+  id: '__root__' | '/' | '/tanks/$tankId' | '/tanks/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   TanksTankIdRoute: typeof TanksTankIdRoute
+  TanksIndexRoute: typeof TanksIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   TanksTankIdRoute: TanksTankIdRoute,
+  TanksIndexRoute: TanksIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +116,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/tanks/$tankId"
+        "/tanks/$tankId",
+        "/tanks/"
       ]
     },
     "/": {
@@ -105,6 +125,9 @@ export const routeTree = rootRoute
     },
     "/tanks/$tankId": {
       "filePath": "tanks/$tankId.tsx"
+    },
+    "/tanks/": {
+      "filePath": "tanks/index.tsx"
     }
   }
 }
