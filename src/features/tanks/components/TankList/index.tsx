@@ -1,13 +1,11 @@
-import { Tank } from "@/features/tanks/utils/Types";
 import styles from "./index.module.css";
 import { Link } from "@tanstack/react-router";
+import { useTankStore } from "@/stores/tankStore";
 
-type TankListProps = {
-  tanks: Tank[];
-  handleDeleteTank: (id: string) => void;
-};
 
-export function TankList({ tanks, handleDeleteTank }: TankListProps) {
+export function TankList() {
+const {tanks} = useTankStore();
+
   return (
     <ul role="list" className={styles.container} aria-label="Tank list">
       {tanks.length === 0 && (
@@ -21,7 +19,7 @@ export function TankList({ tanks, handleDeleteTank }: TankListProps) {
         <li
           key={tank.id}
           className={styles.tankCard}
-          data-status={tank.status.toLowerCase()}
+          data-status={tank.status?.toLowerCase()}
         >
           <div className={styles.cardInfo}>
             <p>Capacity: {tank.capacity} litres</p>
@@ -35,13 +33,6 @@ export function TankList({ tanks, handleDeleteTank }: TankListProps) {
           >
             Edit
           </Link>
-          <button
-            className={styles.deleteButton}
-            type="button"
-            onClick={() => handleDeleteTank(tank.id)}
-          >
-            Delete
-          </button>
         </li>
       ))}
     </ul>

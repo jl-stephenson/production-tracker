@@ -5,12 +5,13 @@ import {
   newFermentationSchema,
 } from "@/features/fermentations/utils/schema";
 import styles from "./index.module.css";
+import { useTankStore } from "@/stores/tankStore";
 
 type NewFermentationPageProps = {
   tankId: string;
-}
+};
 
-export function NewFermentationPage({tankId}: NewFermentationPageProps) {
+export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
   const {
     register,
     control,
@@ -31,9 +32,12 @@ export function NewFermentationPage({tankId}: NewFermentationPageProps) {
     name: "fruits",
   });
 
+  const {addFermentation} = useTankStore();
+
   const onSubmit: SubmitHandler<NewFermentationFormValues> = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(data);
+    addFermentation(data);
+    // console.log(data);
   };
 
   return (
@@ -71,6 +75,7 @@ export function NewFermentationPage({tankId}: NewFermentationPageProps) {
                   Sugar level (SG):
                   <input
                     type="number"
+                    step="0.01"
                     {...register(`fruits.${index}.sugarLevel` as const, {
                       valueAsNumber: true,
                     })}
@@ -85,6 +90,7 @@ export function NewFermentationPage({tankId}: NewFermentationPageProps) {
                   pH:
                   <input
                     type="number"
+                    step="0.01"
                     {...register(`fruits.${index}.pH` as const, {
                       valueAsNumber: true,
                     })}
@@ -100,6 +106,7 @@ export function NewFermentationPage({tankId}: NewFermentationPageProps) {
                 Weight harvested (KG):
                 <input
                   type="number"
+                  step="0.01"
                   {...register(`fruits.${index}.weight` as const, {
                     valueAsNumber: true,
                   })}
