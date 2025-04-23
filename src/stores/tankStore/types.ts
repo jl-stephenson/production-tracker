@@ -25,15 +25,30 @@ export type Fruit = {
 export type Fermentation = {
   id: string;
   name: string;
+  totalVolume: number;
+  averageSugarLevel: number;
+  varietyPercentages: Record<string, number>;
   startDate: Date;
   estimatedEndDate?: Date;
   fruits: Fruit[];
 };
 
 export type TankStore = {
-    tanks: Tank[];
-    fermentations: Fermentation[];
-    addTank: (tank: Omit<Tank, "id" | "dateCreated" | "status" | "currentFermentation">) => void;
-    fetchTank: (tankId: string) => Tank | undefined;
-    startFermentation: (fermentation: Omit<Fermentation, "id" | "tankId">, tankId: string) => void;
-}
+  tanks: Tank[];
+  fermentations: Fermentation[];
+  addTank: (
+    tank: Omit<Tank, "id" | "dateCreated" | "status" | "currentFermentation">,
+  ) => void;
+  fetchTank: (tankId: string) => Tank | undefined;
+  startFermentation: (
+    fermentation: Omit<
+      Fermentation,
+      | "id"
+      | "tankId"
+      | "totalVolume"
+      | "averageSugarLevel"
+      | "varietyPercentages"
+    >,
+    tankId: string,
+  ) => void;
+};
