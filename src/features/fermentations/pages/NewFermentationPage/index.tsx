@@ -6,12 +6,16 @@ import {
 } from "@/features/fermentations/utils/schema";
 import styles from "./index.module.css";
 import { useTankStore } from "@/stores/tankStore";
+import { useNavigate } from "@tanstack/react-router";
 
 type NewFermentationPageProps = {
   tankId: string;
 };
 
 export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
+  const { startFermentation } = useTankStore();
+  const navigate = useNavigate({ from: "/tanks/$tankId/fermentations/new" });
+
   const {
     register,
     control,
@@ -32,12 +36,11 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
     name: "fruits",
   });
 
-  const {addFermentation} = useTankStore();
-
   const onSubmit: SubmitHandler<NewFermentationFormValues> = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    addFermentation(data, tankId);
+    startFermentation(data, tankId);
     // console.log(data);
+    navigate({ to: "/tanks/$tankId/detail", params: { tankId } });
   };
 
   return (

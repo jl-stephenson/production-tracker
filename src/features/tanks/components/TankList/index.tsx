@@ -27,7 +27,7 @@ const {tanks} = useTankStore();
           </div>
           <Link
             className={styles.editLink}
-            to="/tanks/$tankId"
+            to="/tanks/$tankId/detail"
             params={{ tankId: tank.id }}
             aria-label={`Edit tank with capacity of ${tank.capacity} litres`}
           >
