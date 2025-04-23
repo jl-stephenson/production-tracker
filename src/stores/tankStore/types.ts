@@ -17,13 +17,14 @@ export type Tank = {
 export type Fruit = {
   fruit: "Apples" | "Grapes";
   variety: string;
-  weight: number;
+  litres: number;
   sugarLevel: number;
   pH: number;
 };
 
 export type Fermentation = {
   id: string;
+  name: string;
   startDate: Date;
   estimatedEndDate?: Date;
   fruits: Fruit[];

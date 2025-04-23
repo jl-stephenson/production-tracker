@@ -1,12 +1,13 @@
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
+  createFermentationSchema,
   NewFermentationFormValues,
-  newFermentationSchema,
 } from "@/features/fermentations/utils/schema";
 import styles from "./index.module.css";
 import { useTankStore } from "@/stores/tankStore";
 import { useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 type NewFermentationPageProps = {
   tankId: string;
@@ -15,6 +16,8 @@ type NewFermentationPageProps = {
 export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
   const { startFermentation } = useTankStore();
   const navigate = useNavigate({ from: "/tanks/$tankId/fermentations/new" });
+  const tank = useTankStore((state) => state.fetchTank(tankId));
+  const formSchema = createFermentationSchema(tank!);
 
   const {
     register,
@@ -22,10 +25,10 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<NewFermentationFormValues>({
-    resolver: zodResolver(newFermentationSchema),
+    resolver: zodResolver(formSchema),
     defaultValues: {
       fruits: [
-        { fruit: "Apples", variety: "", weight: 0, sugarLevel: 0, pH: 0 },
+        { fruit: "Apples", variety: "", litres: 0, sugarLevel: 0, pH: 0 },
       ],
       startDate: new Date(),
       estimatedEndDate: undefined,
@@ -42,6 +45,10 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
     // console.log(data);
     navigate({ to: "/tanks/$tankId/detail", params: { tankId } });
   };
+
+  useEffect(() => {
+    console.log("Form errors:", errors);
+  }, [errors]);
 
   return (
     <div className={styles.container}>
@@ -106,17 +113,17 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
                 </label>
               </div>
               <label>
-                Weight harvested (KG):
+                Litres of juice:
                 <input
                   type="number"
                   step="0.01"
-                  {...register(`fruits.${index}.weight` as const, {
+                  {...register(`fruits.${index}.litres` as const, {
                     valueAsNumber: true,
                   })}
                 />
-                {errors.fruits?.[index]?.weight && (
+                {errors.fruits?.[index]?.litres && (
                   <span role="alert">
-                    {errors.fruits?.[index]?.weight?.message}
+                    {errors.fruits?.[index]?.litres?.message}
                   </span>
                 )}
               </label>
@@ -129,7 +136,7 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
                   append({
                     fruit: "Apples",
                     variety: "",
-                    weight: 0,
+                    litres: 0,
                     sugarLevel: 0,
                     pH: 0,
                   })
@@ -148,7 +155,16 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
             </div>
           </section>
         ))}
+
         <div className={styles.dateFields}>
+          {errors.fruits?.root?.message && (
+            <span role="alert">{errors.fruits.root.message}</span>
+          )}
+          <label>
+            Name:
+            <input type="text" {...register("name")} />
+            {errors.name && <span role="alert">{errors.name.message}</span>}
+          </label>
           <label>
             Fermentation start date:
             <input
