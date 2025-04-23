@@ -13,7 +13,8 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as TanksIndexImport } from './routes/tanks/index'
-import { Route as TanksTankIdImport } from './routes/tanks/$tankId'
+import { Route as TanksTankIdDetailImport } from './routes/tanks/$tankId/detail'
+import { Route as TanksTankIdFermentationsNewImport } from './routes/tanks/$tankId/fermentations/new'
 
 // Create/Update Routes
 
@@ -29,11 +30,18 @@ const TanksIndexRoute = TanksIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const TanksTankIdRoute = TanksTankIdImport.update({
-  id: '/tanks/$tankId',
-  path: '/tanks/$tankId',
+const TanksTankIdDetailRoute = TanksTankIdDetailImport.update({
+  id: '/tanks/$tankId/detail',
+  path: '/tanks/$tankId/detail',
   getParentRoute: () => rootRoute,
 } as any)
+
+const TanksTankIdFermentationsNewRoute =
+  TanksTankIdFermentationsNewImport.update({
+    id: '/tanks/$tankId/fermentations/new',
+    path: '/tanks/$tankId/fermentations/new',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -46,18 +54,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/tanks/$tankId': {
-      id: '/tanks/$tankId'
-      path: '/tanks/$tankId'
-      fullPath: '/tanks/$tankId'
-      preLoaderRoute: typeof TanksTankIdImport
-      parentRoute: typeof rootRoute
-    }
     '/tanks/': {
       id: '/tanks/'
       path: '/tanks'
       fullPath: '/tanks'
       preLoaderRoute: typeof TanksIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/tanks/$tankId/detail': {
+      id: '/tanks/$tankId/detail'
+      path: '/tanks/$tankId/detail'
+      fullPath: '/tanks/$tankId/detail'
+      preLoaderRoute: typeof TanksTankIdDetailImport
+      parentRoute: typeof rootRoute
+    }
+    '/tanks/$tankId/fermentations/new': {
+      id: '/tanks/$tankId/fermentations/new'
+      path: '/tanks/$tankId/fermentations/new'
+      fullPath: '/tanks/$tankId/fermentations/new'
+      preLoaderRoute: typeof TanksTankIdFermentationsNewImport
       parentRoute: typeof rootRoute
     }
   }
@@ -67,42 +82,60 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/tanks/$tankId': typeof TanksTankIdRoute
   '/tanks': typeof TanksIndexRoute
+  '/tanks/$tankId/detail': typeof TanksTankIdDetailRoute
+  '/tanks/$tankId/fermentations/new': typeof TanksTankIdFermentationsNewRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/tanks/$tankId': typeof TanksTankIdRoute
   '/tanks': typeof TanksIndexRoute
+  '/tanks/$tankId/detail': typeof TanksTankIdDetailRoute
+  '/tanks/$tankId/fermentations/new': typeof TanksTankIdFermentationsNewRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/tanks/$tankId': typeof TanksTankIdRoute
   '/tanks/': typeof TanksIndexRoute
+  '/tanks/$tankId/detail': typeof TanksTankIdDetailRoute
+  '/tanks/$tankId/fermentations/new': typeof TanksTankIdFermentationsNewRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tanks/$tankId' | '/tanks'
+  fullPaths:
+    | '/'
+    | '/tanks'
+    | '/tanks/$tankId/detail'
+    | '/tanks/$tankId/fermentations/new'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tanks/$tankId' | '/tanks'
-  id: '__root__' | '/' | '/tanks/$tankId' | '/tanks/'
+  to:
+    | '/'
+    | '/tanks'
+    | '/tanks/$tankId/detail'
+    | '/tanks/$tankId/fermentations/new'
+  id:
+    | '__root__'
+    | '/'
+    | '/tanks/'
+    | '/tanks/$tankId/detail'
+    | '/tanks/$tankId/fermentations/new'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  TanksTankIdRoute: typeof TanksTankIdRoute
   TanksIndexRoute: typeof TanksIndexRoute
+  TanksTankIdDetailRoute: typeof TanksTankIdDetailRoute
+  TanksTankIdFermentationsNewRoute: typeof TanksTankIdFermentationsNewRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  TanksTankIdRoute: TanksTankIdRoute,
   TanksIndexRoute: TanksIndexRoute,
+  TanksTankIdDetailRoute: TanksTankIdDetailRoute,
+  TanksTankIdFermentationsNewRoute: TanksTankIdFermentationsNewRoute,
 }
 
 export const routeTree = rootRoute
@@ -116,18 +149,22 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/tanks/$tankId",
-        "/tanks/"
+        "/tanks/",
+        "/tanks/$tankId/detail",
+        "/tanks/$tankId/fermentations/new"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/tanks/$tankId": {
-      "filePath": "tanks/$tankId.tsx"
-    },
     "/tanks/": {
       "filePath": "tanks/index.tsx"
+    },
+    "/tanks/$tankId/detail": {
+      "filePath": "tanks/$tankId/detail.tsx"
+    },
+    "/tanks/$tankId/fermentations/new": {
+      "filePath": "tanks/$tankId/fermentations/new.tsx"
     }
   }
 }

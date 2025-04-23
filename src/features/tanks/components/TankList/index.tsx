@@ -1,13 +1,11 @@
-import { Tank } from "@/features/tanks/utils/Types";
 import styles from "./index.module.css";
 import { Link } from "@tanstack/react-router";
+import { useTankStore } from "@/stores/tankStore";
 
-type TankListProps = {
-  tanks: Tank[];
-  handleDeleteTank: (id: string) => void;
-};
 
-export function TankList({ tanks, handleDeleteTank }: TankListProps) {
+export function TankList() {
+const {tanks} = useTankStore();
+
   return (
     <ul role="list" className={styles.container} aria-label="Tank list">
       {tanks.length === 0 && (
@@ -29,19 +27,12 @@ export function TankList({ tanks, handleDeleteTank }: TankListProps) {
           </div>
           <Link
             className={styles.editLink}
-            to="/tanks/$tankId"
+            to="/tanks/$tankId/detail"
             params={{ tankId: tank.id }}
             aria-label={`Edit tank with capacity of ${tank.capacity} litres`}
           >
             Edit
           </Link>
-          <button
-            className={styles.deleteButton}
-            type="button"
-            onClick={() => handleDeleteTank(tank.id)}
-          >
-            Delete
-          </button>
         </li>
       ))}
     </ul>

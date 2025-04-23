@@ -54,7 +54,6 @@
   background-color: var(--color-primary);
   height: 100%;
   border-left: 1px solid var(--color-dark);
-  border-right: 1px solid var(--color-dark);
   padding: 1.5rem;
   display: flex;
   align-items: center;
@@ -65,23 +64,7 @@
   background-color: var(--color-primary-shade);
 }
 
-.deleteButton {
-  background-color: var(--color-secondary);
-  color: white;
-  cursor: pointer;
-  height: 100%;
-  border: 0;
-  border-left: 1px solid var(--color-dark);
-  padding: 1.5rem;
-  transition: background-color 0.2s ease;
-}
-
-.deleteButton:hover {
-    background-color: var(--color-secondary-shade);
-}
-
-.editLink:focus,
-.deleteButton:focus {
-    outline: 2px solid var(--color-dark);
-    outline-offset: -2px;
+.editLink:focus {
+  outline: 2px solid var(--color-dark);
+  outline-offset: -2px;
 }
