@@ -1,7 +1,4 @@
-import {
-  Fruit,
-  Tank,
-} from "@/stores/tankStore/types";
+import { Fruit, Tank } from "@/stores/tankStore/types";
 
 export function calculateTotalVolume(fruits: Fruit[]): number {
   return fruits.reduce((acc, { litres }) => acc + litres, 0);
@@ -21,15 +18,20 @@ export function calculateVarietyPercentages(
 ): Record<string, number> {
   const totalVolume = calculateTotalVolume(fruits);
 
-  const percentages = fruits.reduce(
-    (acc, fruit) => {
-      acc[fruit.variety] = fruit.litres / totalVolume;
+  const volumeByVariety = fruits.reduce(
+    (acc, { variety, litres }) => {
+      acc[variety] = (acc[variety] || 0) + litres;
       return acc;
     },
     {} as Record<string, number>,
   );
 
-  return percentages;
+  return Object.fromEntries(
+    Object.entries(volumeByVariety).map(([variety, litres]) => [
+      variety,
+      litres / totalVolume,
+    ]),
+  );
 }
 
 export function validateTankCapacity(

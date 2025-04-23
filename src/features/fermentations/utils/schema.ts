@@ -2,15 +2,6 @@ import { z } from "zod";
 import { validateTankCapacity } from "./utils";
 import { Tank } from "@/stores/tankStore/types";
 
-// const fruitSchema = z.object({
-//   fruit: z.enum(["Apples", "Grapes"]),
-//   variety: z.string().nonempty(),
-//   litres: z.number().positive("Quantity must be greater than 0"),
-//   sugarLevel: z.number().positive("Sugar level must be positive"),
-//   pH: z.number().min(0.1).max(14, "pH must be between 0-14"),
-// });
-
-
 export function createFermentationSchema(tank: Tank) {
   return z
     .object({
@@ -25,7 +16,7 @@ export function createFermentationSchema(tank: Tank) {
             litres: z.number().positive("Quantity must be > 0"),
             sugarLevel: z.number().positive("Sugar level must be positive"),
             pH: z.number().min(0.1).max(14, "pH must be between 0.1–14"),
-          })
+          }),
         )
         .min(1, "At least one fruit is required"),
     })
@@ -34,8 +25,8 @@ export function createFermentationSchema(tank: Tank) {
       if (!isValid) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
-          path: ["fruits"],       // ← bind it to the fruits field
-          message: error,         // ← dynamic message from your util
+          path: ["fruits"],
+          message: error,
         });
       }
     });
