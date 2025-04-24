@@ -6,46 +6,75 @@ import {
   calculateTotalVolume,
   calculateVarietyPercentages,
 } from "@/features/fermentations/utils/utils";
+import { getItem, setItem } from "./storage";
 
 export const useTankStore = create<TankStore>((set, get) => ({
-  tanks: [],
+  tanks: getItem("cider-production").tanks,
   fermentations: [],
   addTank: (tank) =>
-    set((state) => ({
-      tanks: [
-        ...state.tanks,
-        {
-          ...tank,
-          id: generateUniqueId(),
-          dateCreated: Date.now(),
-          status: Status.Empty,
-          currentFermentation: null,
-        },
-      ],
-    })),
+    set((state) => {
+      const newState = {
+        tanks: [
+          ...state.tanks,
+          {
+            ...tank,
+            id: generateUniqueId(),
+            dateCreated: Date.now(),
+            status: Status.Empty,
+            currentFermentation: null,
+          },
+        ],
+      };
+      setItem("cider-production", newState);
+      return newState;
+    }),
   fetchTank: (tankId) => {
     const { tanks } = get();
     return tanks.find((tank) => tank.id === tankId);
   },
-  startFermentation: (fermentation, tankId) => {
-    const newFermentation = {
-      ...fermentation,
-      id: generateUniqueId(),
-      totalVolume: calculateTotalVolume(fermentation.fruits),
-      averageSugarLevel: calculateAverageSugarLevel(fermentation.fruits),
-      varietyPercentages: calculateVarietyPercentages(fermentation.fruits),
-    };
+  startFermentation: (fermentation, tankId) =>
+    set((state) => {
+      const newFermentation = {
+        ...fermentation,
+        id: generateUniqueId(),
+        totalVolume: calculateTotalVolume(fermentation.fruits),
+        averageSugarLevel: calculateAverageSugarLevel(fermentation.fruits),
+        varietyPercentages: calculateVarietyPercentages(fermentation.fruits),
+      };
 
-    return set((state) => ({
-      tanks: state.tanks.map((tank) =>
-        tank.id === tankId
-          ? {
-              ...tank,
-              status: Status.Fermenting,
-              currentFermentation: newFermentation,
-            }
-          : tank,
-      ),
-    }));
-  },
+      const newState = {
+        tanks: state.tanks.map((tank) =>
+          tank.id === tankId
+            ? {
+                ...tank,
+                status: Status.Fermenting,
+                currentFermentation: newFermentation,
+              }
+            : tank,
+        ),
+      };
+      setItem("cider-production", newState);
+      return newState;
+    }),
+  // startFermentation: (fermentation, tankId) => {
+  //   const newFermentation = {
+  //     ...fermentation,
+  //     id: generateUniqueId(),
+  //     totalVolume: calculateTotalVolume(fermentation.fruits),
+  //     averageSugarLevel: calculateAverageSugarLevel(fermentation.fruits),
+  //     varietyPercentages: calculateVarietyPercentages(fermentation.fruits),
+  //   };
+
+  //   return set((state) => ({
+  //     tanks: state.tanks.map((tank) =>
+  //       tank.id === tankId
+  //         ? {
+  //             ...tank,
+  //             status: Status.Fermenting,
+  //             currentFermentation: newFermentation,
+  //           }
+  //         : tank,
+  //     ),
+  //   }));
+  // },
 }));
