@@ -56,25 +56,4 @@ export const useTankStore = create<TankStore>((set, get) => ({
       setItem("cider-production", newState);
       return newState;
     }),
-  // startFermentation: (fermentation, tankId) => {
-  //   const newFermentation = {
-  //     ...fermentation,
-  //     id: generateUniqueId(),
-  //     totalVolume: calculateTotalVolume(fermentation.fruits),
-  //     averageSugarLevel: calculateAverageSugarLevel(fermentation.fruits),
-  //     varietyPercentages: calculateVarietyPercentages(fermentation.fruits),
-  //   };
-
-  //   return set((state) => ({
-  //     tanks: state.tanks.map((tank) =>
-  //       tank.id === tankId
-  //         ? {
-  //             ...tank,
-  //             status: Status.Fermenting,
-  //             currentFermentation: newFermentation,
-  //           }
-  //         : tank,
-  //     ),
-  //   }));
-  // },
 }));
