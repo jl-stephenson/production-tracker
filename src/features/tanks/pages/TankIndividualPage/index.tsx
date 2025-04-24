@@ -11,8 +11,6 @@ export function TankIndividualPage({ tankId }: TankIndividualPageProps) {
 
   if (!tank) return <div>Something went wrong</div>;
 
-  console.log(tank);
-
   return (
     <main className="dashboard-container">
       <Link className="back-link" to="/tanks">

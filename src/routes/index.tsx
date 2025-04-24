@@ -48,8 +48,7 @@ function Index() {
               <h2>Analytics</h2>
             </div>
             <div className="dashboard-card-body">
-              <p>Something here.</p>
-              <p>And another thing.</p>
+              <p>In development.</p>
             </div>
             <div className="dashboard-card-footer">
               <Link
@@ -67,8 +66,7 @@ function Index() {
               <h2>Upcoming Tasks</h2>
             </div>
             <div className="dashboard-card-body">
-              <p>Something here.</p>
-              <p>And another thing.</p>
+              <p>In development.</p>
             </div>
             <div className="dashboard-card-footer">
               <Link
