@@ -15,11 +15,17 @@ export function TankIndividualPage({ tankId }: TankIndividualPageProps) {
       <li>Capacity: {tank.capacity} litres</li>
       <li>Material: {tank.material}</li>
       {tank.currentFermentation ? (
-        <li>{tank.currentFermentation.fruits.map((fruit) => (
-          <li key={tank.currentFermentation?.id}>{fruit.variety}</li>
-        ))}</li>
+        <ul role="list">
+          <li>Name: {tank.currentFermentation.name}</li>
+          <li>
+            Volume: {tank.currentFermentation.totalVolume}L / {tank.capacity}L
+          </li>
+          <li>Status: {tank.status}</li>
+        </ul>
       ) : (
-        <Link to="/tanks/$tankId/fermentations/new" params={{tankId: tankId}}>Add fermentation</Link>
+        <Link to="/tanks/$tankId/fermentations/new" params={{ tankId: tankId }}>
+          Add fermentation
+        </Link>
       )}
     </ul>
   );
