@@ -203,6 +203,7 @@ p {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
   gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .dashboard-card {
@@ -224,6 +225,7 @@ p {
 .dashboard-card-body {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding: 1rem;
   flex-grow: 1;
 }
@@ -260,4 +262,13 @@ p {
 
 .dashboard-card-link[aria-disabled="true"] {
   background-color: grey;
+}
+
+.back-link {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: var(--color-dark);
+  border: 1px solid var(--color-dark);
+  padding: 0.5rem;
+  margin-block: 1rem;
 }

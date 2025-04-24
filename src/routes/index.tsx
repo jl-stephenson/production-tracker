@@ -1,3 +1,4 @@
+import { useTankStore } from "@/stores/tankStore";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -5,6 +6,13 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { tanks } = useTankStore();
+
+  const totalCapacity = tanks.reduce(
+    (total, { capacity }) => total + capacity,
+    0,
+  );
+
   return (
     <>
       <main className="dashboard-container">
@@ -14,11 +22,25 @@ function Index() {
               <h2>Tanks</h2>
             </div>
             <div className="dashboard-card-body">
-              <p>Something here.</p>
-              <p>And another thing.</p>
+              {tanks.length > 0 ? (
+                <>
+                  <p>Number of tanks: {tanks.length}</p>
+                  <p>Total capacity: {totalCapacity} litres</p>
+                </>
+              ) : (
+                <p>No tanks, click below to add.</p>
+              )}
             </div>
             <div className="dashboard-card-footer">
-              <Link className="dashboard-card-link" to="/tanks">View</Link>
+              {tanks.length === 0 ? (
+                <Link className="dashboard-card-link" to="/tanks">
+                  Add Tank
+                </Link>
+              ) : (
+                <Link className="dashboard-card-link" to="/tanks">
+                  View
+                </Link>
+              )}
             </div>
           </div>
           <div className="dashboard-card">
@@ -30,7 +52,14 @@ function Index() {
               <p>And another thing.</p>
             </div>
             <div className="dashboard-card-footer">
-              <Link aria-disabled={true} className="dashboard-card-link" to="/tanks" onClick={(event) => event.preventDefault()}>View</Link>
+              <Link
+                aria-disabled={true}
+                className="dashboard-card-link"
+                to="/tanks"
+                onClick={(event) => event.preventDefault()}
+              >
+                View
+              </Link>
             </div>
           </div>
           <div className="dashboard-card">
@@ -42,7 +71,14 @@ function Index() {
               <p>And another thing.</p>
             </div>
             <div className="dashboard-card-footer">
-            <Link aria-disabled={true} className="dashboard-card-link" to="/tanks" onClick={(event) => event.preventDefault()}>Edit</Link>
+              <Link
+                aria-disabled={true}
+                className="dashboard-card-link"
+                to="/tanks"
+                onClick={(event) => event.preventDefault()}
+              >
+                Edit
+              </Link>
             </div>
           </div>
         </div>

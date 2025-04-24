@@ -8,9 +8,14 @@ import {
 } from "@/features/fermentations/utils/utils";
 import { getItem, setItem } from "./storage";
 
+const initialData = getItem("cider-production") || {
+  tanks: [],
+  fermentations: [],
+};
+
 export const useTankStore = create<TankStore>((set, get) => ({
-  tanks: getItem("cider-production").tanks || [],
-  fermentations: getItem("cider-production").fermentations || [],
+  tanks: initialData.tanks,
+  fermentations: initialData.fermentations,
   addTank: (tank) =>
     set((state) => {
       const newState = {
