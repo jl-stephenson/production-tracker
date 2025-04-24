@@ -131,13 +131,13 @@ input:focus {
 }
 
 input[type="number"] {
-  -moz-appearance: textfield; 
+  -moz-appearance: textfield;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none; 
-  margin: 0; 
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 button,
@@ -187,4 +187,77 @@ p {
   --color-empty: #087ca7;
   --color-ready: #d64933;
   --color-aging: #f17f29;
+}
+
+/* ------------------------ */
+/* Layouts                  */
+/* ------------------------ */
+
+.dashboard-container {
+  max-width: 1600px;
+  margin-inline: auto;
+  container-type: inline-size;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+  gap: 0.5rem;
+}
+
+.dashboard-card {
+  border: 1px solid var(--color-dark);
+  background-color: var(--color-light-glare);
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
+}
+
+.dashboard-card-header {
+  width: 100%;
+  border-bottom: 1px solid var(--color-dark);
+  background-color: var(--color-light);
+  padding: 1rem;
+  margin: 0;
+}
+
+.dashboard-card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+.dashboard-card-footer {
+  width: 100%;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--color-dark);
+}
+
+.dashboard-card-link {
+  width: 100%;
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 1.1rem;
+  border: 0;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-card-link:hover {
+  background-color: var(--color-primary-shade);
+}
+
+.dashboard-card-link:focus {
+  outline: 2px solid var(--color-dark);
+  outline-offset: 2px;
+}
+
+.dashboard-card-link[aria-disabled="true"] {
+  background-color: grey;
 }
