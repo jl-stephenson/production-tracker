@@ -9,8 +9,8 @@ import {
 import { getItem, setItem } from "./storage";
 
 export const useTankStore = create<TankStore>((set, get) => ({
-  tanks: getItem("cider-production").tanks,
-  fermentations: [],
+  tanks: getItem("cider-production").tanks || [],
+  fermentations: getItem("cider-production").fermentations || [],
   addTank: (tank) =>
     set((state) => {
       const newState = {
@@ -52,6 +52,7 @@ export const useTankStore = create<TankStore>((set, get) => ({
               }
             : tank,
         ),
+        fermentations: [...state.fermentations, newFermentation],
       };
       setItem("cider-production", newState);
       return newState;

@@ -20,6 +20,7 @@ export function getItem(key: string) {
     return item ? JSON.parse(item) : undefined;
   } catch (error) {
     console.warn(error);
+    return undefined;
   }
 }
 
@@ -32,5 +33,6 @@ export function setItem(key: string, value: unknown) {
     window.localStorage.setItem(key, JSON.stringify(value));
   } catch (error) {
     console.warn(error);
+    return;
   }
 }
