@@ -22,6 +22,11 @@ const {tanks} = useTankStore();
           data-status={tank.status.toLowerCase()}
         >
           <div className={styles.cardInfo}>
+            {tank.currentFermentation ? (
+              <p>Contents: {tank.currentFermentation.name}</p>
+            ) : (
+              <p>Empty</p>
+            )}
             <p>Capacity: {tank.capacity} litres</p>
             <p>Material: {tank.material}</p>
           </div>
