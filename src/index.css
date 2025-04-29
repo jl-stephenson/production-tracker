@@ -145,7 +145,7 @@ select {
   font-family: inherit;
   font-size: inherit;
   border: 1px solid var(--color-dark);
-  padding: 0.25rem;
+  padding: 0.30rem;
 }
 
 select {

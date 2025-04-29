@@ -27,7 +27,14 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       fruits: [
-        { fruit: "Apples", variety: "", litres: 0, sugarLevel: 0, pH: 0 },
+        {
+          fruit: "Apples",
+          variety: "",
+          litres: 0,
+          sugarLevel: 0,
+          pH: 0,
+          TA: 0,
+        },
       ],
       startDate: new Date(),
       estimatedEndDate: undefined,
@@ -84,6 +91,21 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
                 </div>
                 <div className={styles.fieldsFlex}>
                   <label>
+                    Litres of juice:
+                    <input
+                      type="number"
+                      step="0.01"
+                      {...register(`fruits.${index}.litres` as const, {
+                        valueAsNumber: true,
+                      })}
+                    />
+                    {errors.fruits?.[index]?.litres && (
+                      <span role="alert">
+                        {errors.fruits?.[index]?.litres?.message}
+                      </span>
+                    )}
+                  </label>
+                  <label>
                     Sugar level (SG):
                     <input
                       type="number"
@@ -98,6 +120,8 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
                       </span>
                     )}
                   </label>
+                </div>
+                <div className={styles.fieldsFlex}>
                   <label>
                     pH:
                     <input
@@ -113,22 +137,22 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
                       </span>
                     )}
                   </label>
+                  <label>
+                    Titratable acidity (g/L):
+                    <input
+                      type="number"
+                      step="0.01"
+                      {...register(`fruits.${index}.TA` as const, {
+                        valueAsNumber: true,
+                      })}
+                    />
+                    {errors.fruits?.[index]?.TA && (
+                      <span role="alert">
+                        {errors.fruits?.[index]?.TA?.message}
+                      </span>
+                    )}
+                  </label>
                 </div>
-                <label>
-                  Litres of juice:
-                  <input
-                    type="number"
-                    step="0.01"
-                    {...register(`fruits.${index}.litres` as const, {
-                      valueAsNumber: true,
-                    })}
-                  />
-                  {errors.fruits?.[index]?.litres && (
-                    <span role="alert">
-                      {errors.fruits?.[index]?.litres?.message}
-                    </span>
-                  )}
-                </label>
               </div>
               <div className={styles.fruitButtons}>
                 {index === fields.length - 1 && (
@@ -142,6 +166,7 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
                         litres: 0,
                         sugarLevel: 0,
                         pH: 0,
+                        TA: 0,
                       })
                     }
                   >
