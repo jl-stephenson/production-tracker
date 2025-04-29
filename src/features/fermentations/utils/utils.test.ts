@@ -10,6 +10,7 @@ describe("total volume", () => {
       litres: 100,
       sugarLevel: 1.4,
       pH: 3.8,
+      TA: 5,
     },
     {
       fruit: "Apples",
@@ -17,6 +18,7 @@ describe("total volume", () => {
       litres: 200,
       sugarLevel: 1.4,
       pH: 3.8,
+      TA: 5.2,
     },
     {
       fruit: "Apples",
@@ -24,6 +26,7 @@ describe("total volume", () => {
       litres: 200,
       sugarLevel: 1.4,
       pH: 3.8,
+      TA: 5.3,
     },
   ];
 
