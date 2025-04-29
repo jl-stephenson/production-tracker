@@ -16,6 +16,7 @@ export function createFermentationSchema(tank: Tank) {
             litres: z.number().positive("Quantity must be > 0"),
             sugarLevel: z.number().positive("Sugar level must be positive"),
             pH: z.number().min(0.1).max(14, "pH must be between 0.1–14"),
+            TA: z.number().min(0.1).max(10, "TA must be between 0.1–10"),
           }),
         )
         .min(1, "At least one fruit is required"),

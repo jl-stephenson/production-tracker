@@ -27,7 +27,14 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       fruits: [
-        { fruit: "Apples", variety: "", litres: 0, sugarLevel: 0, pH: 0 },
+        {
+          fruit: "Apples",
+          variety: "",
+          litres: 0,
+          sugarLevel: 0,
+          pH: 0,
+          TA: 0,
+        },
       ],
       startDate: new Date(),
       estimatedEndDate: undefined,
@@ -46,7 +53,11 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
 
   return (
     <main className="dashboard-container">
-      <Link className="back-link" to="/tanks/$tankId/detail" params={{ tankId }}>
+      <Link
+        className="back-link"
+        to="/tanks/$tankId/detail"
+        params={{ tankId }}
+      >
         Back
       </Link>
       <div className={styles.container}>
@@ -80,6 +91,21 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
                 </div>
                 <div className={styles.fieldsFlex}>
                   <label>
+                    Litres of juice:
+                    <input
+                      type="number"
+                      step="0.01"
+                      {...register(`fruits.${index}.litres` as const, {
+                        valueAsNumber: true,
+                      })}
+                    />
+                    {errors.fruits?.[index]?.litres && (
+                      <span role="alert">
+                        {errors.fruits?.[index]?.litres?.message}
+                      </span>
+                    )}
+                  </label>
+                  <label>
                     Sugar level (SG):
                     <input
                       type="number"
@@ -94,6 +120,8 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
                       </span>
                     )}
                   </label>
+                </div>
+                <div className={styles.fieldsFlex}>
                   <label>
                     pH:
                     <input
@@ -109,47 +137,51 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
                       </span>
                     )}
                   </label>
+                  <label>
+                    Titratable acidity (g/L):
+                    <input
+                      type="number"
+                      step="0.01"
+                      {...register(`fruits.${index}.TA` as const, {
+                        valueAsNumber: true,
+                      })}
+                    />
+                    {errors.fruits?.[index]?.TA && (
+                      <span role="alert">
+                        {errors.fruits?.[index]?.TA?.message}
+                      </span>
+                    )}
+                  </label>
                 </div>
-                <label>
-                  Litres of juice:
-                  <input
-                    type="number"
-                    step="0.01"
-                    {...register(`fruits.${index}.litres` as const, {
-                      valueAsNumber: true,
-                    })}
-                  />
-                  {errors.fruits?.[index]?.litres && (
-                    <span role="alert">
-                      {errors.fruits?.[index]?.litres?.message}
-                    </span>
-                  )}
-                </label>
               </div>
               <div className={styles.fruitButtons}>
-                <button
-                  className={styles.addButton}
-                  type="button"
-                  onClick={() =>
-                    append({
-                      fruit: "Apples",
-                      variety: "",
-                      litres: 0,
-                      sugarLevel: 0,
-                      pH: 0,
-                    })
-                  }
-                >
-                  Add another fruit
-                </button>
-                <button
-                  className={styles.deleteButton}
-                  type="button"
-                  onClick={() => remove(index)}
-                  disabled={fields.length === 1}
-                >
-                  Delete
-                </button>
+                {index === fields.length - 1 && (
+                  <button
+                    className={styles.addButton}
+                    type="button"
+                    onClick={() =>
+                      append({
+                        fruit: "Apples",
+                        variety: "",
+                        litres: 0,
+                        sugarLevel: 0,
+                        pH: 0,
+                        TA: 0,
+                      })
+                    }
+                  >
+                    Add another fruit
+                  </button>
+                )}
+                {fields.length > 1 && (
+                  <button
+                    className={styles.deleteButton}
+                    type="button"
+                    onClick={() => remove(index)}
+                  >
+                    Delete
+                  </button>
+                )}
               </div>
             </section>
           ))}

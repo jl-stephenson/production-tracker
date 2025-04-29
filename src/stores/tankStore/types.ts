@@ -20,6 +20,7 @@ export type Fruit = {
   litres: number;
   sugarLevel: number;
   pH: number;
+  TA: number;
 };
 
 export type Fermentation = {
