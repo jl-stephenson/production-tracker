@@ -46,7 +46,11 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
 
   return (
     <main className="dashboard-container">
-      <Link className="back-link" to="/tanks/$tankId/detail" params={{ tankId }}>
+      <Link
+        className="back-link"
+        to="/tanks/$tankId/detail"
+        params={{ tankId }}
+      >
         Back
       </Link>
       <div className={styles.container}>
@@ -127,29 +131,32 @@ export function NewFermentationPage({ tankId }: NewFermentationPageProps) {
                 </label>
               </div>
               <div className={styles.fruitButtons}>
-                <button
-                  className={styles.addButton}
-                  type="button"
-                  onClick={() =>
-                    append({
-                      fruit: "Apples",
-                      variety: "",
-                      litres: 0,
-                      sugarLevel: 0,
-                      pH: 0,
-                    })
-                  }
-                >
-                  Add another fruit
-                </button>
-                <button
-                  className={styles.deleteButton}
-                  type="button"
-                  onClick={() => remove(index)}
-                  disabled={fields.length === 1}
-                >
-                  Delete
-                </button>
+                {index === fields.length - 1 && (
+                  <button
+                    className={styles.addButton}
+                    type="button"
+                    onClick={() =>
+                      append({
+                        fruit: "Apples",
+                        variety: "",
+                        litres: 0,
+                        sugarLevel: 0,
+                        pH: 0,
+                      })
+                    }
+                  >
+                    Add another fruit
+                  </button>
+                )}
+                {fields.length > 1 && (
+                  <button
+                    className={styles.deleteButton}
+                    type="button"
+                    onClick={() => remove(index)}
+                  >
+                    Delete
+                  </button>
+                )}
               </div>
             </section>
           ))}
