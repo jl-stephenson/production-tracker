@@ -40,7 +40,9 @@ export function TankForm() {
           <div className={styles.textInput}>
             <label htmlFor="tank-capacity">Tank Capacity (litres):</label>
             <input {...register("capacity")} id="tank-capacity" type="number" />
-            {errors.capacity && <span role="alert">{errors.capacity.message}</span>}
+            {errors.capacity && (
+              <span role="alert">{errors.capacity.message}</span>
+            )}
           </div>
           <div className={styles.selectFlex}>
             <label htmlFor="tank-material">Material:</label>
