@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { generateUniqueId } from "./utils";
-import { Status, TankStore } from "./types";
+import { Status, Tank, TankStore } from "./types";
 import {
   calculateAverageSugarLevel,
   calculateTotalVolume,
@@ -62,4 +62,34 @@ export const useTankStore = create<TankStore>((set, get) => ({
       setItem("cider-production", newState);
       return newState;
     }),
+  sortTanks: (sortType: string) => {
+    set((state) => {
+      const sortedTanks = sortTanksByType(state.tanks, sortType);
+      return {
+        tanks: sortedTanks,
+      };
+    });
+  },
 }));
+
+function sortTanksByType(tanks: Tank[], sortType: string) {
+  switch (sortType) {
+    case "date-created": {
+      return tanks.toSorted((a, b) => {
+        const dateCreatedA = a.dateCreated;
+        const dateCreatedB = b.dateCreated;
+        return dateCreatedB - dateCreatedA;
+      });
+    }
+    case "capacity": {
+      return tanks.toSorted((a, b) => {
+        const capacityA = a.capacity;
+        const capacityB = b.capacity;
+        return capacityB - capacityA;
+      });
+    }
+    default: {
+      return tanks;
+    }
+  }
+}
