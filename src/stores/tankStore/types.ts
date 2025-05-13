@@ -52,4 +52,5 @@ export type TankStore = {
     >,
     tankId: string,
   ) => void;
+  sortTanks: (sortType: string) => void;
 };
