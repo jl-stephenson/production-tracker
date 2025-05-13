@@ -18,6 +18,7 @@ export function TankListPage() {
         <select
           id="tank-sort"
           onChange={(event) => sortTanks(event.currentTarget.value)}
+          defaultValue="date-created"
         >
           <option value="date-created">
             Date created (newest &gt; oldest)

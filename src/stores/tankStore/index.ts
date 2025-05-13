@@ -63,9 +63,8 @@ export const useTankStore = create<TankStore>((set, get) => ({
       return newState;
     }),
   sortTanks: (sortType: string) => {
-    console.log(sortType);
     set((state) => {
-      const sortedTanks = filterTanks(state.tanks, sortType);
+      const sortedTanks = sortTanksByType(state.tanks, sortType);
       return {
         tanks: sortedTanks,
       };
@@ -73,7 +72,7 @@ export const useTankStore = create<TankStore>((set, get) => ({
   },
 }));
 
-function filterTanks(tanks: Tank[], sortType: string) {
+function sortTanksByType(tanks: Tank[], sortType: string) {
   switch (sortType) {
     case "date-created": {
       return tanks.toSorted((a, b) => {
